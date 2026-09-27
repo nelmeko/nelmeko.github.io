@@ -288,7 +288,6 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
     <button class="brand" id="brand" type="button">nely</button>
     <div class="hdr-r"><nav id="nav" aria-label="Sections"></nav></div>
   </header>
-  <div class="status-wrap" id="statusLine"></div>
   <main class="view" id="view"></main>
   <footer class="site-foot" id="foot"></footer>
 </div>
@@ -409,6 +408,7 @@ function vHome() {
   const f = document.createDocumentFragment();
   f.append(h('section', {},
     h('h1', { class: 'name', 'data-text': p.handle || 'nely' }, p.handle || 'nely'),
+    (() => { const n = statusNodes(); return n.length ? h('div', { class: 'status-wrap' }, n) : null; })(),
     p.tagline ? h('p', { class: 'tagline' }, p.tagline) : null,
     p.about ? h('p', { class: 'about' }, p.about) : null,
     (S.links.length || isAdmin) ? h('div', { class: 'links' },
@@ -636,12 +636,12 @@ function lastUpdated() {
   for (const c of ['interests', 'apps', 'projects', 'works', 'posts', 'links', 'shelf', 'gbreplies', 'board']) for (const d of S[c]) { add(d.updated); add(d.created); if (c === 'board' && d.z > 1e12) add(d.z); }
   return max ? new Date(max).toISOString() : null;
 }
-function drawChrome() {
+function statusNodes() {
   const st = S.status || {};
   const li = S.listening || {};
   const liUrl = safeUrl(li.link);
   const songText = [h('span', {}, li.song || ''), li.artist ? h('span', { class: 'artist' }, ' — ' + li.artist) : null];
-  $('#statusLine').replaceChildren(...[
+  return [
     (st.text || isAdmin) ? h('div', { class: 'status-line' },
       h('span', { class: 'pulse', 'aria-hidden': 'true' }),
       h('span', {}, st.text || (isAdmin ? 'no status set' : '')),
@@ -650,7 +650,9 @@ function drawChrome() {
     (li.song || isAdmin) ? h('div', { class: 'status-line' },
       li.song ? h('span', { class: 'eq', 'aria-hidden': 'true' }, h('i'), h('i'), h('i')) : h('span', { class: 'pulse', 'aria-hidden': 'true', style: 'opacity:.3;animation:none' }),
       li.song ? (liUrl ? h('a', { href: liUrl, target: '_blank', rel: 'noopener', 'aria-label': 'Now listening: ' + li.song }, songText) : h('span', { 'aria-label': 'Now listening' }, songText)) : h('span', {}, 'not listening to anything'),
-      isAdmin ? h('button', { class: 'link-btn', onclick: editListening }, li.song ? 'edit' : 'set song') : null) : null].filter(Boolean));
+      isAdmin ? h('button', { class: 'link-btn', onclick: editListening }, li.song ? 'edit' : 'set song') : null) : null].filter(Boolean);
+}
+function drawChrome() {
   const total = S.hits.reduce((a, x) => a + (Number(x.visits) || 0), 0);
   const digits = S.loaded.hits ? String(total).padStart(6, '0').split('') : '------'.split('');
   $('#foot').replaceChildren(...[
