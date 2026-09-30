@@ -1,0 +1,16 @@
+# Jekyll settings — GitHub reads this when it builds your site. You shouldn't need to change it.
+title: nely online
+url: "https://nelmeko.github.io"
+timezone: America/Los_Angeles
+permalink: /log/:title/
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+kramdown:
+  input: GFM
+  hard_wrap: true
+exclude:
+  - README.md

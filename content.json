@@ -1,0 +1,20 @@
+---
+layout: null
+---
+{
+  "built": {{ site.time | date_to_xmlschema | jsonify }},
+  "profile": {{ site.data.profile | jsonify }},
+  "status": {{ site.data.status | jsonify }},
+  "listening": {{ site.data.listening | jsonify }},
+  "hidden": {{ site.data.hidden | jsonify }},
+  "links": {{ site.data.links | jsonify }},
+  "interests": {{ site.data.interests | jsonify }},
+  "apps": {{ site.data.apps | jsonify }},
+  "projects": {{ site.data.projects | jsonify }},
+  "works": {{ site.data.works | jsonify }},
+  "shelf": {{ site.data.shelf | jsonify }},
+  "board": {{ site.data.board | jsonify }},
+  "posts": [{% for post in site.posts %}
+    {"id": {{ post.slug | jsonify }}, "title": {{ post.title | jsonify }}, "created": {{ post.date | date_to_xmlschema | jsonify }}, "html": {{ post.content | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]
+}

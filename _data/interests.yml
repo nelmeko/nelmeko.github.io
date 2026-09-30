@@ -1,0 +1,17 @@
+# The "currently" list on the home page, top to bottom.
+#   label  the thing · kind  watching / listening / reading / playing / thinking about / making · note  optional
+
+- label: planning travels
+  kind: thinking about
+  note: 'i want to go to japan or swiss alps #travel #epic'
+- label: building apps
+  kind: thinking about
+  note: 2 currently in dev
+- label: ambient & glitch music
+  kind: listening
+- label: internship hunting
+  kind: thinking about
+  note: pls jp morgan pick me up so i can larp as finance bro and sell courses to people on instagram
+- label: editing videos
+  kind: making
+  note: currently working on multiple videos. minecraft, deadlock, and tf2. hopefully done this year

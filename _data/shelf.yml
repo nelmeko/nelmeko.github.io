@@ -1,0 +1,42 @@
+# The shelf, top to bottom.
+#   category  albums / films / shows / games / books / other
+#   rating    1–5 (or 0 for none)
+#   cover     optional — upload to assets, then  cover: assets/yourfile.jpg
+
+- category: shows
+  title: 'Cyberpunk: Edgerunners'
+  creator: Rafał Jaki
+  year: '2022'
+  rating: 5
+  review: Massive Cyberpunk fan since I was 10. I love everything about that alternate timeline and they
+    made an anime? Gut wrenching tho :)
+  cover: assets/c95274f94e9ea331daf2b80b856b27a6.jpg
+- category: shows
+  title: Samurai Champloo
+  creator: Shinichirō Watanabe
+  year: '2005'
+  rating: 5
+  review: My friend Gurgs put me on. Jin is literally me.
+  cover: assets/d0c99ac2c853cb8c94e2421ed3944b77.jpg
+- category: shows
+  title: Attack on Titan
+  creator: Hajime Isayama
+  year: '2013'
+  rating: 5
+  review: I remember watching the anime on netflix when only one season was animated so i had to buy the
+    mangas. I did not know what I was getting into. 2nd on my list, must watch for everyone.
+  cover: assets/357dfc4697a306076562b8472542e198.jpg
+- category: shows
+  title: Vinland Saga
+  creator: Makoto Yukimura
+  year: '2019'
+  rating: 5
+  review: my comfort show. number 1 anime on my list.
+  cover: assets/e637eb346bcddcb168c926e1647f08e6.jpg
+- category: shows
+  title: Serial Experiments Lain
+  creator: Ryūtarō Nakamura · Chiaki J. Konaka
+  year: '1998'
+  rating: 5
+  review: god is a girl stuck inside the internet.
+  cover: assets/066b04b91a4af8ced044ef8a385e1de5.jpg

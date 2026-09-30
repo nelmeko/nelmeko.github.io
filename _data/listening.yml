@@ -1,0 +1,8 @@
+# The "now listening" line with the bouncing bars.
+#   song    leave empty ("") to hide the line
+#   artist
+#   link    optional — clicking the song opens this (Spotify / YouTube link)
+
+song: Even Further Down The Drain
+artist: Cynthoni
+link: https://youtu.be/nhWCtDwATKM?si=3bi-6LUm6VDb6g6K

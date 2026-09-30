@@ -1,0 +1,9 @@
+# works ▾ art & music. Upload the file to assets first.
+#   - title: my drawing
+#     kind: art            (or music)
+#     image: assets/drawing.png     (for art)
+#     audio: assets/song.m4a        (for music — .m4a or .mp3)
+#     link: https://…      (optional, e.g. bandcamp)
+#     note: pencil, 2026   (optional)
+
+[]

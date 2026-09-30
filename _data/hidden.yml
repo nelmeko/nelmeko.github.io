@@ -1,0 +1,5 @@
+# The secret page behind "archives" in the footer.
+# Write under  body: |  and indent every line by two spaces.
+# Blank line = new paragraph · "## " = heading · "> " = quote · links become clickable
+
+body: ''

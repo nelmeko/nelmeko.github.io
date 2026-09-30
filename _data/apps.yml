@@ -1,0 +1,13 @@
+# works ▾ apps — shown in this order.
+#   status  live / building / idea / archived
+
+- name: health bio monitor
+  status: idea
+  desc: looking to integrate health trackers/readers with AI to give a summary of health in the morning
+    - connection to physician?
+- name: trackers
+  status: building
+  desc: due to economic pressures, looking into creating an app to help consumers with fuel
+- name: elo rating
+  status: building
+  desc: taking counter strike elo and applying it to sports
