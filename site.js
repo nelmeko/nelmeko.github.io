@@ -17,10 +17,10 @@ function h(tag, attrs, ...kids) {
 }
 
 document.getElementById('logo').addEventListener('click', () => go('home'));
-const SECTIONS = ['home', 'apps', 'projects', 'works', 'board', 'shelf', 'log', 'guestbook'];
+const SECTIONS = ['home', 'about', 'apps', 'projects', 'works', 'board', 'shelf', 'log', 'guestbook'];
 const PROJ_TYPES = ['video', 'zine', 'writing', 'music', 'art series', 'build', 'game', 'collab', 'other'];
 const PROJ_STATUS = ['ongoing', 'finished', 'paused', 'idea'];
-const NAV = ['home', 'works', 'board', 'shelf', 'guestbook'];
+const NAV = ['home', 'about', 'works', 'board', 'shelf', 'guestbook'];
 let ddOpen = false;
 const canHover = matchMedia('(hover: hover)').matches;
 document.addEventListener('click', () => { if (ddOpen) { ddOpen = false; render(); } });
@@ -31,7 +31,7 @@ const KINDS = ['watching', 'listening', 'reading', 'playing', 'thinking about', 
 const STATUSES = ['live', 'building', 'idea', 'archived'];
 const STATIC = true;
 let BUILT = null;
-const S = { projects: [], profile: null, listening: null, hidden: null, gbreplies: [], now: null, status: null, interests: [], apps: [], works: [], posts: [], links: [], board: [], shelf: [], guestbook: [], hits: [], loaded: {} };
+const S = { about: null, projects: [], profile: null, listening: null, hidden: null, gbreplies: [], now: null, status: null, interests: [], apps: [], works: [], posts: [], links: [], board: [], shelf: [], guestbook: [], hits: [], loaded: {} };
 let myId = null, ownerView = false, shelfFilter = 'all';
 const PLATFORMS = ['spotify', 'steam', 'soundcloud', 'bandcamp', 'youtube', 'instagram', 'tiktok', 'twitter / x', 'bluesky', 'discord', 'github', 'twitch', 'letterboxd', 'last.fm', 'other'];
 let db = null, assets = null, isAdmin = false, online = false;
@@ -70,7 +70,7 @@ function richText(body) {
   const f = document.createDocumentFragment();
   for (const b of String(body || '').split(/\n\s*\n/)) {
     const t = b.trim(); if (!t) continue;
-    if (t.startsWith('## ')) f.append(h('h3', {}, t.slice(3)));
+    if (t.startsWith('## ')) { const [hd, ...rest] = t.split('\n'); f.append(h('h3', {}, hd.slice(3))); const more = rest.join('\n').trim(); if (more) f.append(h('p', {}, inline(more))); }
     else if (t.startsWith('> ')) f.append(h('blockquote', {}, inline(t.replace(/^> ?/gm, ''))));
     else f.append(h('p', {}, inline(t)));
   }
@@ -107,7 +107,7 @@ function draw() {
           WORKS_FOLDER.map(([r, label]) => h('button', { role: 'menuitem', 'aria-current': String(route === r), onclick: e => { e.stopPropagation(); ddOpen = false; e.currentTarget.blur(); go(r); } }, label)))))));
   const v = $('#view');
   document.querySelector('.wrap').classList.toggle('wide', route === 'board');
-  v.replaceChildren(({ home: vHome, now: vNow, apps: vApps, projects: vProjects, works: vWorks, board: vBoard, shelf: vShelf, log: vLog, guestbook: vGuestbook, void: vVoid })[route]());
+  v.replaceChildren(({ home: vHome, now: vNow, apps: vApps, projects: vProjects, works: vWorks, board: vBoard, shelf: vShelf, log: vLog, guestbook: vGuestbook, void: vVoid, about: vAbout })[route]());
   drawChrome();
   if (route === 'board') sizeBoard();
   if (entering) { entering = false; v.classList.remove('enter'); void v.offsetWidth; v.classList.add('enter'); }
@@ -481,6 +481,31 @@ function editListening() {
 }
 
 /* ---------- hidden page (reached by clicking "archives" in the footer, or #void) ---------- */
+/* ---------- about page (content: _data/about.yml) ---------- */
+function vAbout() {
+  const a = S.about || {};
+  const f = h('section', { class: 'about-page' });
+  f.append(h('h2', { class: 'page-title' }, a.title || 'about'));
+  f.append(h('div', { class: 'about-top' },
+    a.photo ? h('img', { class: 'about-photo', src: blob(a.photo), alt: a.photo_alt || 'photo of ' + (profile().handle || 'me') }) : null,
+    h('div', { class: 'about-body' }, a.body ? richText(a.body) : empty(S.loaded.about ? 'nothing here yet.' : 'loading…'))));
+  const facts = Array.isArray(a.facts) ? a.facts.filter(x => x && (x.label || x.value)) : [];
+  if (facts.length) f.append(h('ul', { class: 'list about-facts' }, facts.map(x => h('li', {}, h('span', { class: 'k' }, x.label || ''), h('span', {}, String(x.value ?? ''))))));
+  return f;
+}
+// about-page styles live here so style.css (which you may have customised) stays untouched
+document.head.append(Object.assign(document.createElement('style'), { textContent: `
+.about-top{display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+.about-photo{width:180px;max-width:100%;aspect-ratio:1;object-fit:cover;border:1px solid var(--line);filter:saturate(.85);box-shadow:0 0 22px rgba(91,149,255,.25)}
+.about-body{flex:1;min-width:min(100%,280px);font-size:16px;line-height:1.9}
+.about-body p{margin:0 0 1.2em}
+.about-body h3{font-size:18px;margin:1.4em 0 .4em}
+.about-body blockquote{margin:0 0 1.2em;padding-left:14px;border-left:1px solid var(--blue);color:var(--dim)}
+.about-facts{margin-top:40px}
+.about-facts .k{color:var(--faint)}
+.about-facts li{grid-template-columns:minmax(90px,30%) minmax(0,1fr)}
+` }));
+
 function vVoid() {
   const hd = S.hidden || {};
   const f = h('section', { class: 'void' },
@@ -704,6 +729,7 @@ async function connect() {
   catch (e) { console.error('Could not load content.json — check the Actions tab on GitHub for a failed build.', e); }
   const list = v => Array.isArray(v) ? v : [];
   const txt = html => { const d = document.createElement('div'); d.innerHTML = html || ''; return d.textContent; };
+  S.about = D.about || null;
   S.profile = D.profile || null; S.status = D.status || null; S.listening = D.listening || null; S.hidden = D.hidden || null;
   S.links = list(D.links); S.interests = list(D.interests); S.apps = list(D.apps); S.shelf = list(D.shelf);
   S.projects = list(D.projects).map((x, i) => ({ id: 'pj' + i, created: x.started, ...x }));

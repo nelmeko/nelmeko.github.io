@@ -1,0 +1,25 @@
+# The "about" page (in the menu next to home).
+#   title   optional page heading (default: about)
+#   photo   optional — upload a picture to the assets folder, then  photo: assets/me.jpg
+#   body    your text. Keep  body: |  and indent every line underneath by two spaces.
+#           Blank line = new paragraph · "## " = heading · "> " = quote · links become clickable
+#   facts   optional quick facts, shown as a list. Delete the whole facts section if you don't want it.
+
+title: about
+photo: ""
+body: |
+  hi, i'm nely. this is a placeholder — replace it with your own words.
+
+  ## who i am
+  a few lines about yourself: what you do, what you care about, what you're into lately.
+
+  ## this site
+  my little corner of the wired. art, apps, projects, a log, and things i like.
+
+facts:
+  - label: based in
+    value: los angeles
+  - label: currently
+    value: building this site
+  - label: find me
+    value: steam · github · youtube

@@ -44,6 +44,7 @@ Each file starts with `#` notes explaining its fields.
 
 | File | What it controls |
 |---|---|
+| `about.yml` | The about page: your text, an optional photo, quick facts |
 | `profile.yml` | Your big name, tagline, about text, guestbook link |
 | `status.yml` | The "building at 3am" line |
 | `listening.yml` | The now-listening song |

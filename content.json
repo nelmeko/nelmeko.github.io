@@ -3,6 +3,7 @@ layout: null
 ---
 {
   "built": {{ site.time | date_to_xmlschema | jsonify }},
+  "about": {{ site.data.about | jsonify }},
   "profile": {{ site.data.profile | jsonify }},
   "status": {{ site.data.status | jsonify }},
   "listening": {{ site.data.listening | jsonify }},
