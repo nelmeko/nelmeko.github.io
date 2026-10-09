@@ -4,15 +4,13 @@
 #   started  "2026-09"   ended  "2026-10" (only if finished)
 #   cover    optional image — upload it to the assets folder, then write  cover: assets/yourfile.jpg
 
-- title: homelab
-  type: build
-  status: idea
-  desc: im trying to find old anime that I used to watch on Youtube but they got taken down. Will learn
-    how to create my own server and torrent all media that I enjoy and not give these corps a single cent.
-  started: 2026-09
-- title: ncc movie
-  type: video
-  status: paused
-  desc: ive worked on it multiple times but im over it. i open the project and i dont even want to move
-    clips around. video postponed indefinitely...
-  started: 2025-03
+- title: "ncc movie"
+  type: "video"
+  status: "paused"
+  desc: "ive worked on it multiple times but im over it. i open the project and i dont even want to move clips around. video postponed indefinitely..."
+  started: "2025-03"
+- title: "homelab"
+  type: "build"
+  status: "idea"
+  desc: "im trying to find old anime that I used to watch on Youtube but they got taken down. Will learn how to create my own server and torrent all media that I enjoy and not give these corps a single cent."
+  started: "2026-09"

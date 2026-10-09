@@ -1,9 +1,9 @@
 # The buttons under your name, in this order.
 # Add one by copying a block (the lines starting with "- label") and changing it.
 
-- label: steam
-  url: https://steamcommunity.com/id/nelypan/
-- label: youtube
-  url: https://www.youtube.com/@nelypan
-- label: github
-  url: https://github.com/nelmeko
+- label: "steam"
+  url: "https://steamcommunity.com/id/nelypan/"
+- label: "github"
+  url: "https://github.com/nelmeko"
+- label: "youtube"
+  url: "https://www.youtube.com/@nelypan"

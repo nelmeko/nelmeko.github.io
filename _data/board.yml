@@ -5,107 +5,107 @@
 # Tip: open your site, add #board-arrange to the address, drag things around, then press "copy layout"
 #      and paste the result over everything below.
 
-- image: assets/fa8b488161a129aa997112cc3774ae7c.jpg
+- image: "assets/fa8b488161a129aa997112cc3774ae7c.jpg"
   x: 16
   y: 795
   w: 300
   rot: -2.4
-- image: assets/b401db58c3885d573a37746d0dfe55a7.png
+- image: "assets/b401db58c3885d573a37746d0dfe55a7.png"
   x: 0
   y: 0
   w: 300
   rot: -2.6
-- image: assets/723b18edfa3cd1e23413b39ecb609972.png
+- image: "assets/723b18edfa3cd1e23413b39ecb609972.png"
   x: 294
   y: 0
   w: 313
   rot: -4
-- image: assets/07c58235e3a36dc24fbc364cf28b330b.jpg
+- image: "assets/07c58235e3a36dc24fbc364cf28b330b.jpg"
   x: 315
   y: 188
   w: 338
   rot: 1.4
-- image: assets/5b88ed46b463bafb850492356b76fd97.jpg
+- image: "assets/5b88ed46b463bafb850492356b76fd97.jpg"
   x: 0
   y: 357
   w: 300
   rot: 2
-- image: assets/f80db781232d986e200d077410c9d065.png
+- image: "assets/f80db781232d986e200d077410c9d065.png"
   x: 596
   y: 0
   w: 252
   rot: 4
-- image: assets/ba85f71deee555f25336a3499b20712a.jpg
+- image: "assets/ba85f71deee555f25336a3499b20712a.jpg"
   x: 757
   y: 0
   w: 300
   rot: 0.6
-- image: assets/56b569eb685bb474b0b1e098aed030f8.png
+- image: "assets/56b569eb685bb474b0b1e098aed030f8.png"
   x: 294
   y: 1
   w: 300
   rot: 1.7
-- image: assets/e4dbb314a0174f4ca6ffae4db1f784b1.jpg
+- image: "assets/e4dbb314a0174f4ca6ffae4db1f784b1.jpg"
   x: 11
   y: 598
   w: 300
   rot: -2.8
-- image: assets/25a91e44076685bb2cc7276cd304d0c9.jpg
+- image: "assets/25a91e44076685bb2cc7276cd304d0c9.jpg"
   x: 623
   y: 985
   w: 371
   rot: 0.9
-- image: assets/7f3215c3f2aece21a6932b1b101742e8.jpg
+- image: "assets/7f3215c3f2aece21a6932b1b101742e8.jpg"
   x: 0
   y: 960
   w: 223
   rot: 1.5
-- image: assets/ef3d2e067ac5d667bd2ea1e80c5a71b4.jpg
+- image: "assets/ef3d2e067ac5d667bd2ea1e80c5a71b4.jpg"
   x: 514
   y: 435
   w: 300
   rot: -0.4
-- image: assets/b9681c0e93ca4e9d76c7ef5e37ce695a.jpg
+- image: "assets/b9681c0e93ca4e9d76c7ef5e37ce695a.jpg"
   x: 786
   y: 415
   w: 254
   rot: 0
-- image: assets/1433da6a0adf228f3f835807ced14365.jpg
+- image: "assets/1433da6a0adf228f3f835807ced14365.jpg"
   x: 293
   y: 378
   w: 300
   rot: 2.7
-- image: assets/ae77bff1d7c0b926022caebac3d801ad.png
+- image: "assets/ae77bff1d7c0b926022caebac3d801ad.png"
   x: 662
   y: 231
   w: 300
   rot: -0.4
-- image: assets/2f794b64ef307745c100a7a39d35899c.jpg
+- image: "assets/2f794b64ef307745c100a7a39d35899c.jpg"
   x: 7
   y: 1243
   w: 300
   rot: 1.4
-- image: assets/d2200d56f363d2c08894f221485845cb.jpg
+- image: "assets/d2200d56f363d2c08894f221485845cb.jpg"
   x: 792
   y: 1213
   w: 180
   rot: -4
-- image: assets/57832da458b51973ab86a3062bfa98a0.jpg
+- image: "assets/57832da458b51973ab86a3062bfa98a0.jpg"
   x: 392
   y: 1238
   w: 300
   rot: 1.3
-- image: assets/adf3f0b9d8612340cb081bb192c012b1.jpg
+- image: "assets/adf3f0b9d8612340cb081bb192c012b1.jpg"
   x: 677
   y: 814
   w: 300
   rot: 2.5
-- image: assets/fa9da5b31fad0de5e67e4c8632e1b97e.jpg
+- image: "assets/fa9da5b31fad0de5e67e4c8632e1b97e.jpg"
   x: 350
   y: 806
   w: 300
   rot: 0
-- image: assets/174d80ba592890a25e763434760b12ec.jpg
+- image: "assets/174d80ba592890a25e763434760b12ec.jpg"
   x: 219
   y: 970
   w: 403

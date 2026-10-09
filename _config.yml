@@ -14,3 +14,4 @@ kramdown:
   hard_wrap: true
 exclude:
   - README.md
+  - CLAUDE.md

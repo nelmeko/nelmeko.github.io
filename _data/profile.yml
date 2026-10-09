@@ -4,7 +4,7 @@
 #   about         a short paragraph (optional) — use  about: |  and indent lines below it for several lines
 #   guestbook_url link to an outside guestbook (e.g. atabook.org); leave empty to show "moving soon"
 
-handle: nely
-tagline: ''
-about: ''
+handle: "nely"
+tagline: ""
+about: ""
 guestbook_url: ''
