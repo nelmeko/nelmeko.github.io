@@ -209,11 +209,6 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
 .status-line .eq i:nth-child(2){animation-delay:-.3s}.status-line .eq i:nth-child(3){animation-delay:-.6s}
 @keyframes eqb{0%,100%{height:3px}50%{height:10px}}
 .status-line .artist{color:var(--faint)}
-/* guestbook replies */
-.gb-reply{margin:10px 0 0 18px;padding-left:12px;border-left:1px solid var(--blue);font-size:14px;color:var(--dim)}
-.gb-reply b{font-weight:normal;color:var(--blue);text-shadow:var(--glow)}
-.gb-reply .when{color:var(--faint);font-size:12px}
-.gb-actions{display:flex;gap:14px}
 /* hidden page */
 .void-trigger{all:unset;cursor:default}
 .void-trigger:focus-visible{outline:1px dotted var(--faint)}
@@ -260,13 +255,5 @@ h1,h2,h3{font-weight:500;margin:0;text-wrap:balance}
 .shelf-item .side{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:none}
 .rating{color:var(--blue);letter-spacing:3px;font-size:11px;text-shadow:var(--glow);white-space:nowrap}
 .cat{font-size:12px;color:var(--faint)}
-/* guestbook */
-.gb-form{display:flex;flex-direction:column;gap:14px;margin-bottom:44px}
-.gb-form .row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.gb-entry{padding:16px 0;border-top:1px solid var(--line)}
-.gb-entry:last-child{border-bottom:1px solid var(--line)}
-.gb-entry .who{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13px;color:var(--faint)}
-.gb-entry .who b{font-weight:normal;color:var(--blue);text-shadow:var(--glow)}
-.gb-entry p{margin:6px 0 0;white-space:pre-wrap;word-break:break-word}
 @media (max-width:520px){ .row-btn{grid-template-columns:minmax(0,1fr);gap:2px} }
 @media (prefers-reduced-motion:reduce){ *,*::before,*::after{animation:none!important;transition:none!important} }

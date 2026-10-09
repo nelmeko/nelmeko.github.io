@@ -10,8 +10,8 @@ match, keeps the explanatory comments at the top of each _data file, and
 prints any image ids that still need to be downloaded into assets/.
 
 Not synced (they only exist on one side): the guestbook and visitor counter
-(artifact only), the "now" page (artifact only), and _data/about.yml plus
-profile.guestbook_url (GitHub only).
+(artifact only), the "now" page (artifact only), and _data/about.yml
+(GitHub only).
 """
 import json
 import re
@@ -148,13 +148,10 @@ def sync_posts(posts):
 
 def main(export):
     profile = load_doc(export, "site", "profile")
-    old = (ROOT / "_data/profile.yml").read_text() if (ROOT / "_data/profile.yml").exists() else ""
-    gb = re.search(r"^guestbook_url:\s*(.*)$", old, re.M)
     write_data("profile", "\n".join([
         f"handle: {scalar(profile.get('handle', 'nely'))}",
         f"tagline: {scalar(profile.get('tagline', ''))}",
-        block("about", profile.get("about", ""), 0),
-        f"guestbook_url: {gb.group(1).strip() if gb else scalar('')}"]))
+        block("about", profile.get("about", ""), 0)]))
 
     status = load_doc(export, "site", "status")
     write_data("status", f"text: {scalar(status.get('text', ''))}\nupdated: {scalar(status.get('updated', ''))}")

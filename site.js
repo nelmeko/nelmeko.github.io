@@ -17,10 +17,10 @@ function h(tag, attrs, ...kids) {
 }
 
 document.getElementById('logo').addEventListener('click', () => go('home'));
-const SECTIONS = ['home', 'about', 'apps', 'projects', 'works', 'board', 'shelf', 'log', 'guestbook'];
+const SECTIONS = ['home', 'about', 'apps', 'projects', 'works', 'board', 'shelf', 'log'];
 const PROJ_TYPES = ['video', 'zine', 'writing', 'music', 'art series', 'build', 'game', 'collab', 'other'];
 const PROJ_STATUS = ['ongoing', 'finished', 'paused', 'idea'];
-const NAV = ['home', 'about', 'works', 'board', 'shelf', 'guestbook'];
+const NAV = ['home', 'about', 'works', 'board', 'shelf'];
 let ddOpen = false;
 const canHover = matchMedia('(hover: hover)').matches;
 document.addEventListener('click', () => { if (ddOpen) { ddOpen = false; render(); } });
@@ -31,7 +31,7 @@ const KINDS = ['watching', 'listening', 'reading', 'playing', 'thinking about', 
 const STATUSES = ['live', 'building', 'idea', 'archived'];
 const STATIC = true;
 let BUILT = null;
-const S = { about: null, projects: [], profile: null, listening: null, hidden: null, gbreplies: [], now: null, status: null, interests: [], apps: [], works: [], posts: [], links: [], board: [], shelf: [], guestbook: [], hits: [], loaded: {} };
+const S = { about: null, projects: [], profile: null, listening: null, hidden: null, now: null, status: null, interests: [], apps: [], works: [], posts: [], links: [], board: [], shelf: [], hits: [], loaded: {} };
 let myId = null, ownerView = false, shelfFilter = 'all';
 const PLATFORMS = ['spotify', 'steam', 'soundcloud', 'bandcamp', 'youtube', 'instagram', 'tiktok', 'twitter / x', 'bluesky', 'discord', 'github', 'twitch', 'letterboxd', 'last.fm', 'other'];
 let db = null, assets = null, isAdmin = false, online = false;
@@ -107,7 +107,7 @@ function draw() {
           WORKS_FOLDER.map(([r, label]) => h('button', { role: 'menuitem', 'aria-current': String(route === r), onclick: e => { e.stopPropagation(); ddOpen = false; e.currentTarget.blur(); go(r); } }, label)))))));
   const v = $('#view');
   document.querySelector('.wrap').classList.toggle('wide', route === 'board');
-  v.replaceChildren(({ home: vHome, now: vNow, apps: vApps, projects: vProjects, works: vWorks, board: vBoard, shelf: vShelf, log: vLog, guestbook: vGuestbook, void: vVoid, about: vAbout })[route]());
+  v.replaceChildren(({ home: vHome, now: vNow, apps: vApps, projects: vProjects, works: vWorks, board: vBoard, shelf: vShelf, log: vLog, void: vVoid, about: vAbout })[route]());
   drawChrome();
   if (route === 'board') sizeBoard();
   if (entering) { entering = false; v.classList.remove('enter'); void v.offsetWidth; v.classList.add('enter'); }
@@ -345,7 +345,7 @@ function lastUpdated() {
   let max = 0;
   const add = v => { const t = typeof v === 'number' ? v : Date.parse(v || ''); if (t > max && t < Date.now() + 864e5) max = t; };
   for (const d of [S.profile, S.status, S.listening, S.hidden]) if (d) { add(d.updated); add(d.created); }
-  for (const c of ['interests', 'apps', 'projects', 'works', 'posts', 'links', 'shelf', 'gbreplies', 'board']) for (const d of S[c]) { add(d.updated); add(d.created); if (c === 'board' && d.z > 1e12) add(d.z); }
+  for (const c of ['interests', 'apps', 'projects', 'works', 'posts', 'links', 'shelf', 'board']) for (const d of S[c]) { add(d.updated); add(d.created); if (c === 'board' && d.z > 1e12) add(d.z); }
   return max ? new Date(max).toISOString() : null;
 }
 function statusNodes() {
@@ -437,37 +437,6 @@ function editShelf(it) {
   }, onDelete: it ? async () => { await db.doc('shelf/' + it.id).delete(); if (it.cover && assets) { try { await assets.delete(it.cover); } catch {} } } : null });
 }
 
-/* ---------- guestbook ---------- */
-let gbForm = null;
-function guestbookForm() {
-  if (gbForm) return gbForm;
-  let saved = ''; try { saved = localStorage.getItem('gb-name') || ''; } catch {}
-  const name = h('input', { id: 'gb_name', maxlength: '40', placeholder: 'your name', autocomplete: 'nickname' }); name.value = saved;
-  const msg = h('textarea', { id: 'gb_msg', maxlength: '500', placeholder: 'leave a message…' });
-  const out = h('div', { class: 'msg', role: 'status' });
-  const btn = h('button', { class: 'save', type: 'submit' }, 'sign');
-  gbForm = h('form', { class: 'gb-form' },
-    h('div', { class: 'field' }, h('label', { for: 'gb_name' }, 'name'), name),
-    h('div', { class: 'field' }, h('label', { for: 'gb_msg' }, 'message'), msg),
-    h('div', { class: 'row' }, out, btn));
-  gbForm.addEventListener('submit', async e => {
-    e.preventDefault(); out.textContent = '';
-    const n = name.value.trim().slice(0, 40), m = msg.value.trim().slice(0, 500);
-    if (!n || !m) { out.textContent = 'Add your name and a message.'; return; }
-    if (!db || !myId) { out.textContent = 'Sign in to claude.ai to sign the guestbook.'; return; }
-    btn.disabled = true; btn.textContent = 'signing…';
-    try {
-      const ref = db.doc('guestbook/' + myId); const snap = await ref.get();
-      const entries = (snap.exists && Array.isArray(snap.data().entries) ? snap.data().entries : []).slice(-49);
-      entries.push({ id: Math.random().toString(36).slice(2, 10), name: n, message: m, created: nowIso() });
-      await ref.set({ entries, updated: nowIso() });
-      try { localStorage.setItem('gb-name', n); } catch {}
-      msg.value = ''; toast('signed. thank you');
-    } catch (err) { out.textContent = err && err.code === 'invalid_argument' ? 'Your access to this site is view-only, so you can’t sign.' : errText(err); }
-    btn.disabled = false; btn.textContent = 'sign';
-  });
-  return gbForm;
-}
 function editListening() {
   openForm({ title: 'Now listening', values: S.listening || {}, fields: [
     { id: 'song', label: 'song', placeholder: 'leave empty to clear' },
@@ -520,48 +489,6 @@ function editVoid() {
   openForm({ title: 'Hidden page', values: S.hidden || {}, fields: [
     { id: 'body', label: 'what lives here', type: 'textarea', tall: true, hint: 'only people who click “archives” in the footer find this · ## heading · > quote' },
   ], onSave: async v => { requireDb(); await db.doc('site/hidden').set({ body: v.body, updated: nowIso() }); } });
-}
-
-/* ---------- guestbook replies (owner only; stored apart from visitors' own docs) ---------- */
-function replyFor(entryId) { return S.gbreplies.find(r => r.id === entryId); }
-function editReply(e) {
-  const cur = replyFor(e.id);
-  openForm({ title: 'Reply to ' + (e.name || 'anonymous'), values: cur || {}, fields: [
-    { id: 'text', label: 'your reply', type: 'textarea', required: true },
-  ], onSave: async v => { requireDb(); await db.doc('gbreplies/' + e.id).set({ text: v.text.slice(0, 600), created: (cur && cur.created) || nowIso(), updated: nowIso() }); },
-    onDelete: cur ? () => db.doc('gbreplies/' + e.id).delete() : null });
-}
-
-function vGuestbook() {
-  const f = document.createDocumentFragment();
-  f.append(h('h2', { class: 'page-title' }, 'guestbook'));
-  if (STATIC) {
-    const gb = safeUrl((S.profile || {}).guestbook_url);
-    f.append(gb
-      ? h('p', {}, h('a', { class: 'save', style: 'display:inline-block;text-decoration:none', href: gb, target: '_blank', rel: 'noopener' }, 'sign my guestbook ↗'))
-      : empty('the guestbook is moving. check back soon.'));
-    return f;
-  }
-  if (db && myId) f.append(guestbookForm());
-  else f.append(h('p', { class: 'muted', style: 'margin:0 0 40px' }, online ? 'sign in to claude.ai to leave a message.' : 'the guestbook is offline in this view.'));
-  const all = S.guestbook.flatMap(d => (Array.isArray(d.entries) ? d.entries : []).map(e => ({ ...e, owner: d.id }))).sort((a, b) => String(b.created).localeCompare(String(a.created)));
-  if (!all.length) { f.append(empty(S.loaded.guestbook || !online ? 'no one has signed yet. be the first.' : 'loading…')); return f; }
-  f.append(h('div', {}, all.map(e => h('div', { class: 'gb-entry' },
-    h('div', { class: 'who' }, h('span', {}, h('b', {}, e.name || 'anonymous'), ' · ' + fmtDate(e.created)),
-      h('span', { class: 'gb-actions' },
-        (isAdmin && e.id) ? h('button', { class: 'link-btn add', onclick: () => editReply(e) }, replyFor(e.id) ? 'edit reply' : 'reply') : null,
-        (isAdmin || e.owner === myId) ? h('button', { class: 'link-btn danger', onclick: ev => removeEntry(e, ev.currentTarget) }, 'remove') : null)),
-    h('p', {}, e.message || ''),
-    (() => { const r = e.id && replyFor(e.id); return r ? h('div', { class: 'gb-reply' }, h('b', {}, profile().handle || 'nely'), ' ', h('span', { class: 'when' }, '· ' + fmtDate(r.updated || r.created)), h('div', { style: 'white-space:pre-wrap;word-break:break-word;margin-top:2px' }, r.text || '')) : null; })()))));
-  return f;
-}
-async function removeEntry(e, btn) {
-  if (btn.dataset.armed !== '1') { btn.dataset.armed = '1'; btn.textContent = 'click to confirm'; setTimeout(() => { btn.dataset.armed = ''; btn.textContent = 'remove'; }, 3000); return; }
-  try {
-    const ref = db.doc('guestbook/' + e.owner); const snap = await ref.get();
-    const entries = (snap.exists && Array.isArray(snap.data().entries) ? snap.data().entries : []).filter(x => x.id !== e.id);
-    await ref.set({ entries, updated: nowIso() }); toast('removed');
-  } catch (err) { toast(errText(err)); }
 }
 
 /* ---------- hit counter: each visitor keeps their own tally doc; the total is the sum ---------- */
