@@ -5,20 +5,22 @@
 #           Blank line = new paragraph · "## " = heading · "> " = quote · links become clickable
 #   facts   optional quick facts, shown as a list. Delete the whole facts section if you don't want it.
 
-title: "about"
+title: "who is nely?"
 photo: ""
 body: |-
-  hi, i'm nely. this is a placeholder — replace it with your own words.
+  born and raised in los angeles, ca
 
-  ## who i am
-  a few lines about yourself: what you do, what you care about, what you're into lately.
+  i enjoy playing source engine games and diving deep into any lore in fiction. 
 
-  ## this site
-  my little corner of the wired. art, apps, projects, a log, and things i like.
+  enjoy anything that has to do with numbers in business or financial markets. 
+
+  been working since i was 13 which is why i have severe back pain. 
+
+  before i die, i wish to see the world and save those experiences on film for future generations to see.
 facts:
   - label: "based in"
     value: "los angeles"
   - label: "currently"
-    value: "building this site"
+    value: "studying accounting"
   - label: "find me"
-    value: "steam · github · youtube"
+    value: "steam · youtube"
