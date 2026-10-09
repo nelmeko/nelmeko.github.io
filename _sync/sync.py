@@ -9,9 +9,7 @@ interests, links, works). The script rewrites _data/*.yml and _posts/*.md to
 match, keeps the explanatory comments at the top of each _data file, and
 prints any image ids that still need to be downloaded into assets/.
 
-Not synced (they only exist on one side): the visitor counter
-(artifact only), the "now" page (artifact only), and _data/about.yml
-(GitHub only).
+Not synced (artifact only): the visitor counter and the "now" page.
 """
 import json
 import re
@@ -160,6 +158,15 @@ def main(export):
     write_data("listening", "\n".join(f"{k}: {scalar(li.get(k, ''))}" for k in ("song", "artist", "link")))
 
     write_data("hidden", block("body", load_doc(export, "site", "hidden").get("body", ""), 0))
+
+    about = load_doc(export, "site", "about")
+    if about:
+        facts = [f for f in about.get("facts") or [] if f.get("label") or f.get("value")]
+        write_data("about", "\n".join([
+            f"title: {scalar(about.get('title') or 'about')}",
+            f"photo: {scalar(asset(about.get('photo')))}",
+            block("body", about.get("body", ""), 0),
+            "facts:" + ("".join(f"\n  - label: {scalar(f.get('label', ''))}\n    value: {scalar(f.get('value', ''))}" for f in facts) if facts else " []")]))
 
     links = sorted(load(export, "links"), key=lambda x: x.get("order", 0))
     write_list("links", [pick(l, "label", "url") for l in links])

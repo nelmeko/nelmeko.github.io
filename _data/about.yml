@@ -5,9 +5,9 @@
 #           Blank line = new paragraph · "## " = heading · "> " = quote · links become clickable
 #   facts   optional quick facts, shown as a list. Delete the whole facts section if you don't want it.
 
-title: about
+title: "about"
 photo: ""
-body: |
+body: |-
   hi, i'm nely. this is a placeholder — replace it with your own words.
 
   ## who i am
@@ -15,11 +15,10 @@ body: |
 
   ## this site
   my little corner of the wired. art, apps, projects, a log, and things i like.
-
 facts:
-  - label: based in
-    value: los angeles
-  - label: currently
-    value: building this site
-  - label: find me
-    value: steam · github · youtube
+  - label: "based in"
+    value: "los angeles"
+  - label: "currently"
+    value: "building this site"
+  - label: "find me"
+    value: "steam · github · youtube"

@@ -5,12 +5,12 @@ Jekyll site on GitHub Pages. `content.json` is built from `_data/*.yml` and `_po
 ## Where content is edited
 
 The owner edits content in the **"nely online" artifact**: https://claude.ai/artifact/27FUJmiWt4diactbpdg3tR
-(its database: `site/{profile,status,listening,hidden,now}`, plus collections `posts`, `board`, `shelf`,
+(its database: `site/{profile,status,listening,hidden,about,now}`, plus collections `posts`, `board`, `shelf`,
 `projects`, `apps`, `interests`, `links`, `works`). That artifact is the source of truth for that content.
 Don't hand-edit those `_data` files or `_posts` here; change the artifact (its database via ArtifactData) and sync.
 
-Only on GitHub (edit here directly): `_data/about.yml` and the design
-(`style.css`, `site.js`, `index.html`). Only in the artifact: visitor counter, the "now" page. The guestbook was removed from both on 2026-10-08.
+Only on GitHub (edit here directly): the design (`style.css`, `site.js`, `index.html`); design changes
+usually need making in the artifact's HTML too. Only in the artifact: visitor counter, the "now" page. The guestbook was removed from both on 2026-10-08.
 
 ## "sync" = copy the artifact into this repo and push
 
