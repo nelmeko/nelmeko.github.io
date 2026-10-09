@@ -10,7 +10,7 @@ The owner edits content in the **"nely online" artifact**: https://claude.ai/art
 Don't hand-edit those `_data` files or `_posts` here; change the artifact (its database via ArtifactData) and sync.
 
 Only on GitHub (edit here directly): `_data/about.yml` and the design
-(`style.css`, `site.js`, `index.html`). Only in the artifact: guestbook, visitor counter, the "now" page. The GitHub site has no guestbook (removed 2026-10-08).
+(`style.css`, `site.js`, `index.html`). Only in the artifact: visitor counter, the "now" page. The guestbook was removed from both on 2026-10-08.
 
 ## "sync" = copy the artifact into this repo and push
 

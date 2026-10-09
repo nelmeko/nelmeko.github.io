@@ -9,7 +9,7 @@ interests, links, works). The script rewrites _data/*.yml and _posts/*.md to
 match, keeps the explanatory comments at the top of each _data file, and
 prints any image ids that still need to be downloaded into assets/.
 
-Not synced (they only exist on one side): the guestbook and visitor counter
+Not synced (they only exist on one side): the visitor counter
 (artifact only), the "now" page (artifact only), and _data/about.yml
 (GitHub only).
 """
