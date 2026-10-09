@@ -9,8 +9,8 @@ The owner edits content in the **"nely online" artifact**: https://claude.ai/art
 `projects`, `apps`, `interests`, `links`, `works`). That artifact is the source of truth for that content.
 Don't hand-edit those `_data` files or `_posts` here; change the artifact (its database via ArtifactData) and sync.
 
-Only on GitHub (edit here directly): the design (`style.css`, `site.js`, `index.html`); design changes
-usually need making in the artifact's HTML too. Only in the artifact: visitor counter, the "now" page. The guestbook was removed from both on 2026-10-08.
+Only on GitHub (edit here directly): the design (`style.css`, `site.js`, `index.html`, `blackwall.css`, `blackwall.js`); design changes
+usually need making in the artifact's HTML too (the Blackwall CSS/JS is pasted inline at the end of the artifact page). Only in the artifact: visitor counter, the "now" page. The guestbook was removed from both on 2026-10-08.
 
 ## "sync" = copy the artifact into this repo and push
 
